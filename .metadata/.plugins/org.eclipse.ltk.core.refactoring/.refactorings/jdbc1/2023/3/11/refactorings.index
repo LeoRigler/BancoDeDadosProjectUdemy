@@ -1,0 +1,4 @@
+1678925681107	Move 'db.properties' to 'jdbc1'
+1678925770364	Rename type 'DBException'
+1678925792614	Rename package 'jdbc1'
+1678926315758	Delete element

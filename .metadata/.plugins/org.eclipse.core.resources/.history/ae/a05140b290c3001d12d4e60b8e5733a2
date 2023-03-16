@@ -1,0 +1,36 @@
+package db;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.util.Properties;
+
+public class DB {
+	
+	
+	//Metodo pra conectar com a base de dados
+	private static Connection conn = null; 
+	
+	public static Connection getConnection() {
+		if (conn == null) {
+			Properties props = loadProperties(); 
+			String url = props.getProperty("dburl"); //dburl é o que está definido dentro do db.properties; 
+		}
+		return conn;
+	}
+	
+	
+	
+	//Metodo auxiliar pra carregar as propriedades e deixar dentro de um objeto específico
+	private static Properties loadProperties() {
+		try (FileInputStream fs = new FileInputStream("db.properties")){
+			Properties props = new Properties(); 
+			props.load(fs);
+			return props; 
+		}
+		catch (IOException e) {
+			throw new DbException(e.getMessage());
+		}
+	}
+
+}

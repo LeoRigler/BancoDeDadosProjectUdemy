@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\temp\2022-2023\Workspace\BancoDeDadosProject\Udemy\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index

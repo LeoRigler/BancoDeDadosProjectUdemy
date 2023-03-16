@@ -1,0 +1,16 @@
+package db;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
+public class DB {
+	
+	//Metodo auxiliar pra carregar as propriedades e deixar dentro de um objeto específico
+	private static Properties loadProperties() {
+		try (FileInputStream fs = new FileInputStream("db.properties")){
+			Properties props = new Properties(); 
+			props.load(fs);
+		}
+	}
+
+}

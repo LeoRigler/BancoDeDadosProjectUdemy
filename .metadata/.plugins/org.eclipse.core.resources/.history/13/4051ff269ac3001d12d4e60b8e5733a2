@@ -1,0 +1,45 @@
+package application;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import db.DB;
+import db.DbException;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		Connection conn = null; 
+		Statement st = null; //statement é a classe pra fazer CONSULTA EM SQL
+		ResultSet rs = null; //Aqui colocamos o resultado da consulta em SQL
+		try {
+			conn = DB.getConnection(); //Aqui ele está conectando com o banco de dados;
+			
+			st = conn.createStatement(); //Aqui estou instanciando um statement chamando a variavel de conexão e criando o statemant 
+			
+			rs = st.executeQuery("select * from department");
+			//por padrão o rs do resultado da query, ele contém os dados em forma de tabela, mas por padrão, ele pega a posição 0, e na 0, não tem nada, então, é preciso dar um ResultSet.next(), dessa forma ele pega o próximo; 
+			
+			
+			while (rs.next()) { //enquanto existir o próximo, ele vai rodar o código abaixo
+				//vale ressaltar que o next(), retorna false quando não existir mais campos, ou seja, ele percorrerá tudo;
+				System.out.println(rs.getInt("Id") + ", " + rs.getString("Name"));
+				//Aqui ele vai jogar na tela o que tem no banco de dados, tem os métodos getINt (que pega o inteiro da base de dados, e depois definimos o nome da coluna do BD) mesma coisa pra string do nome; 
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			//Os recursos da conexão, Statement e ResultSet são externos, e não são controlados pela JVM do java é bom nós fechar os recursos manualmente, pra evitar que o sistema tenha vazamento de memória, por isso o finally
+			DB.closeResultSet(rs);
+			DB.closeStatement(st);
+			DB.closeConnection();
+		}
+
+	}
+
+}

@@ -1,0 +1,28 @@
+package application;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import db.DB;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		Connection conn = null; 
+		Statement st = null; //statement é a classe pra fazer CONSULTA EM SQL
+		ResultSet rs = null; //Aqui colocamos o resultado da consulta em SQL
+		try {
+			conn = DB.getConnection(); //Aqui ele está conectando com o banco de dados;
+			
+			st = conn.createStatement(); //Aqui estou instanciando um statement chamando a variavel de conexão e criando o statemant 
+			
+			rs = st.executeQuery("select * from department");
+			//por padrão o rs do resultado da query, ele contém os dados em forma de tabela, mas por padrão, 
+				
+		} 
+
+	}
+
+}

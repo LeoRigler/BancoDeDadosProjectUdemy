@@ -1,0 +1,10 @@
+package jdbc1;
+
+public class DBException extends RuntimeException{
+
+	private static final long serialVersionUID = 4680219855638974793L;
+	public DbException(String msg) {
+		
+	}
+
+}
